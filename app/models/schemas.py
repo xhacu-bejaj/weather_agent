@@ -1,0 +1,6 @@
+# Mandatory
+
+# Daily
+
+# Hourly 
+

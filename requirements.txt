@@ -1,0 +1,15 @@
+fastapi
+uvicorn
+google-genai
+httpx
+langchain
+wikipedia
+langchain-community
+langchain-openai
+langchain-anthropic
+langchain-google-genai
+python-dotenv
+pydantic
+requests
+openmeteo-requests
+pandas
