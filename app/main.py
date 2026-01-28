@@ -1,31 +1,23 @@
-import os
+import json
+from app.agent.agent import Agent
 
-from dotenv import load_dotenv
-from pydantic import BaseModel
-from langchain_google_genai import ChatGoogleGenerativeAI
-from langchain_core.prompts import ChatPromptTemplate
-from langchain_core.output_parsers import PydanticOutputParser
-from langchain.agents import create_agent
+def main():
 
-#load_dotenv()
+    weather_agent = Agent()
 
-#api_key = os.getenv("GOOGLE_API_KEY")
 
-SYSTEM_PROMPT = """You are a helpful assistant that provides weather information
-"""
+    query = "What is the max temperature and precipitation in New York?"
 
-def get_weather(location: str) -> str:
-    """Get weather for a given city."""
-    return f"The weather in {location} is sunny with a high of 25°C."
+    print(f"User Query: \"{query}\"")
+    print("-" * 20)
 
-agent = create_agent(
-    model = "google_genai:gemini-2.5-flash",
-    tools=[get_weather],
-    system_prompt="You're a helpful assistant that provides weather information, you can use the get_weather tool to fetch weather data, always end the response with a friendly note.",
-)
+    
+    result = weather_agent.process_query(query)
 
-response = agent.invoke(
-    {"messages": [{"role": "user", "content": "What's the weather like in New York?"}]}
-)
+   
+    print("-" * 20)
+    print("Agent Response:")
+    print(json.dumps(result, indent=4))
 
-print(response["messages"][-1].content)
+if __name__ == "__main__":
+    main()
