@@ -2,7 +2,8 @@ import os
 from dotenv import load_dotenv
 
 from langchain.agents import create_agent
-from langchain_google_genai import ChatGoogleGenerativeAI
+#from langchain_google_genai import ChatGoogleGenerativeAI
+from langchain_ollama import ChatOllama
 from langchain.agents.structured_output import ToolStrategy
 
 from app.agent.tools import weather_tool
@@ -14,12 +15,11 @@ SYSTEM_PROMPT = """
     Use the provided tools to fetch weather data as needed.
     """
 
-load_dotenv()
-api_key = os.getenv("GOOGLE_API_KEY")
+# load_dotenv()
+# api_key = os.getenv("GOOGLE_API_KEY")
 
-model = ChatGoogleGenerativeAI(
-    model="gemini-2.5-flash",
-    api_key=api_key,
+model = ChatOllama(
+    model="llama3.1:8b",
 )
 
 agent = create_agent(

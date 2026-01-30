@@ -36,3 +36,5 @@ class DailyWeatherParameters(BaseModel):
     
     uv_index_max: float | None = Field(..., description="Maximum daily UV index.")
     uv_index_clear_sky_max: float | None = Field(..., description="Maximum daily clear-sky UV index.")
+    
+    response: str | None = Field(..., description="The final, human-readable answer to the user's question.")
