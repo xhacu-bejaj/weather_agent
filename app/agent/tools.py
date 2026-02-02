@@ -1,16 +1,16 @@
 from typing import List
-import json
-
 
 import openmeteo_requests
 import numpy as np
+from langchain.tools import tool
 
+@tool
 def weather_tool(latitude: float, longitude: float, user_params: List[str]):
     """Get the weather forecast for a given latitude and longitude.
     Args:
         latitude (float):
         longitude (float):
-        user_params (List[str]): A list of daily weather parameters to retrieve.
+        user_params (List[str]): A list of weather parameters to retrieve.
     """
     openmeteo_client = openmeteo_requests.Client()
     url = "https://api.open-meteo.com/v1/forecast"
@@ -44,11 +44,7 @@ def weather_tool(latitude: float, longitude: float, user_params: List[str]):
 
     return daily_data
     
-# if __name__ == "__main__":
-#     # Example usage
-#     user_selection = ["temperature_2m_max", "temperature_2m_min", "precipitation_sum"]
-#     weather_data = weather_tool(40.7128, -74.0060, user_selection)  # Coordinates for New York City
-#     print(json.dumps(weather_data, indent=4))
+
 
 
 
