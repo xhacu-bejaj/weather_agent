@@ -15,11 +15,10 @@ SYSTEM_PROMPT = """
     Use the provided tools to fetch weather data as needed.
     """
 
-# load_dotenv()
-# api_key = os.getenv("GOOGLE_API_KEY")
 
 model = ChatOllama(
     model="llama3.1:8b",
+    
 )
 
 agent = create_agent(
