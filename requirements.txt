@@ -1,16 +1,10 @@
 fastapi
 uvicorn
-google-genai
 httpx
 langchain
-wikipedia
 langchain-community
-langchain-openai
-langchain-anthropic
-langchain-google-genai
 langchain-ollama
-python-dotenv
 pydantic
 requests
 openmeteo-requests
-pandas
+numpy
