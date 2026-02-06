@@ -1,11 +1,8 @@
-from typing import List
-
 import openmeteo_requests
 import requests
 import numpy as np
 from langchain.tools import tool
-from pydantic import BaseModel, Field # Ensure Field is imported
-from app.models.schemas import WeatherByLocationInput # Import the input schema
+from app.models.schemas import WeatherByLocationInput 
 
 
 def _get_location_coordinates_logic(location: str):
@@ -58,8 +55,8 @@ def _weather_tool_logic(**kwargs):
             return {"error": "No daily data available from weather API."}
         
         daily_data = {}
-        for i, param in enumerate(selected_params): # Iterate over selected_params, not params["daily"]
-            variable = daily.Variables(i) # This assumes order is preserved
+        for i, param in enumerate(selected_params): 
+            variable = daily.Variables(i) 
             if variable is not None:
                 values = variable.ValuesAsNumpy()
                 if isinstance(values, np.ndarray):
