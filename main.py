@@ -1,17 +1,11 @@
-from app.agent.agent import agent
-
+from app.services.chat_service import start_interactive_session
+# TODO: Add memory to the agent 
+# TODO: Add more tools to the agent (e.g., historical weather data, weather alerts, etc.)
+# TODO: fastapi integration for API access to the agent
 def main():
+    query = input("Enter your weather query: ")
+    start_interactive_session(query)
 
-    for chunk in agent.stream({
-        "messages":[{"role":"user","content":"Get the weather forecast for latitude 45.6874 and longitude 12.6386 including maximum temperature, minimum temperature, and precipitation sum."}]
-    }, stream_mode="values"):
-        latest_message = chunk["messages"][-1]
-        if latest_message.content:
-            print(f"Agent: {latest_message.content}")
-        elif latest_message.tool_calls:
-            print(f"Calling tools: {[tc['name'] for tc in latest_message.tool_calls]}")
-
-    
 
 if __name__ == "__main__":
     main()
